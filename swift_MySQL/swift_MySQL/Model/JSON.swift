@@ -6,12 +6,14 @@
 //
 
 import Foundation
+//import UIKit
 
 struct MainJson : Codable {
     //// json의 변수 이름과 key 값을 똑같이 해줘야함
-    var id : Int
-    var name : String
-    var phoneNumber : String
-    var relation : String
-    var photo : String
+    var seq: Int?
+    var name: String
+    var phone: String
+    var address : String
+    var relationship: String
+    var image : String?
 }
