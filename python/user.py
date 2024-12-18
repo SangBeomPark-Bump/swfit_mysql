@@ -83,22 +83,13 @@ async def update(seq: int, name: str, phone: str, address: str, relationship: st
 @router.post("/upload_image")
 async def upload_image(seq: int = Form(...), image: UploadFile = File(...)):
     try:
-        # # 이미지를 저장할 디렉토리 설정
-        # upload_dir = "uploads"
-        # if not os.path.exists(upload_dir):
-        #     os.makedirs(upload_dir)
-        
-        # # 이미지 파일 저장
-        # file_path = os.path.join(upload_dir, image.filename)
-        # with open(file_path, "wb") as buffer:
-        #     shutil.copyfileobj(image.file, buffer)
 
-        image_decoded = decode_image(image)
+        contents = await image.read()  # 비동기로 파일 내용을 읽습니다.
         
         # 데이터베이스에 seq와 이미지 경로 저장
         conn = connection()
         cursor = conn.cursor()
-        cursor.execute("UPDATE user SET image = ? WHERE seq = ?", (image_decoded, seq))
+        cursor.execute("UPDATE user SET image = %s WHERE seq = %s", (contents, seq))
         conn.commit()
         conn.close()
 

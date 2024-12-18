@@ -101,7 +101,7 @@ class UpdateDeleteViewController: UIViewController {
             return
         }
         
-        let url = URL(string: "http://localhost:8000/upload_image")!
+        let url = URL(string: "http://127.0.0.1:8000/user/upload_image")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
