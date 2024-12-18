@@ -93,7 +93,7 @@ class InsertViewController: UIViewController {
     }
     
     func uploadImage(image: UIImage) {
-        guard let url = URL(string: "http://127.0.0.1:8000/upload_image") else {
+        guard let url = URL(string: "http://127.0.0.1:8000/user/upload_image") else {
             showAlert(message: "Invalid URL")
             return
         }
@@ -114,8 +114,7 @@ class InsertViewController: UIViewController {
         body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
         body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
         body.append(imageData)
-        body.append("\r\n".data(using: .utf8)!)
-        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
         
         request.httpBody = body
         
