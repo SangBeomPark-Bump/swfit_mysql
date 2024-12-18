@@ -21,6 +21,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Photo 불러오기"/>
+                                <connections>
+                                    <action selector="btnImagePicker:" destination="5YV-Qf-KvW" eventType="touchUpInside" id="i23-dM-mpI"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aB4-J4-afG">
                                 <rect key="frame" x="16" y="407" width="361" height="307"/>
@@ -31,6 +34,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="등록"/>
+                                <connections>
+                                    <action selector="btnAdd:" destination="5YV-Qf-KvW" eventType="touchUpInside" id="ykf-eY-RHj"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ot2-i6-rE6">
                                 <rect key="frame" x="16" y="147" width="137" height="21"/>
@@ -89,6 +95,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="주소록 입력" id="piy-LB-O2h"/>
+                    <connections>
+                        <outlet property="btnImagePicker" destination="y1d-pF-z43" id="uqD-Ky-rcU"/>
+                        <outlet property="imgView" destination="aB4-J4-afG" id="Q9m-pP-EB0"/>
+                        <outlet property="tfAddress" destination="psb-9h-QUS" id="iEp-6a-Kb0"/>
+                        <outlet property="tfName" destination="QMB-bZ-213" id="0DY-Vg-YFo"/>
+                        <outlet property="tfPhone" destination="VIx-Ib-9Yd" id="GOe-ZF-5OY"/>
+                        <outlet property="tfRelation" destination="Gsg-G0-5iO" id="AvY-Ej-ZOx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70c-gP-0JW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
