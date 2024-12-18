@@ -36,14 +36,19 @@ class UpdateDeleteViewController: UIViewController {
     }
     
     @IBAction func btnUpdate(_ sender: UIButton) {
-        guard let id = curAddress?.id,
-              let name = tfName.text, !name.isEmpty,
-              let phone = tfPhone.text, !phone.isEmpty,
-              let address = tfAddress.text, !address.isEmpty,
-              let relation = tfRelation.text, !relation.isEmpty else {
-            showAlert(message: "모든 필드를 입력해주세요.")
-            return
-        }
+    guard let id = curAddress?.id,
+          let name = tfName.text, !name.isEmpty,
+          let phone = tfPhone.text, !phone.isEmpty,
+          let address = tfAddress.text, !address.isEmpty,
+          let relation = tfRelation.text, !relation.isEmpty else {
+        showAlert(message: "모든 텍스트 필드를 입력해주세요.")
+        return
+    }
+    
+    let imageToUpdate = tfImage.image ?? UIImage() // 기본 이미지 사용
+    updateUser(seq: id, name: name, phone: phone, address: address, relationship: relation, image: imageToUpdate)
+}
+
         
         let imageToUpdate = selectedImage ?? curAddress?.photo
         updateUser(seq: id, name: name, phone: phone, address: address, relationship: relation, image: imageToUpdate)
