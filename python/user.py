@@ -18,6 +18,13 @@ def connection():
 def encode_image(image_data):
     return base64.b64encode(image_data).decode('utf-8')
 
+
+
+def decode_image(base64_string):
+    return base64.b64decode(base64_string)
+
+
+
 @router.get("/user_select")
 async def select():
     conn = connection()
@@ -40,9 +47,11 @@ async def insert(name: str, phone: str, address: str, relationship: str, image: 
     conn = connection()
     curs = conn.cursor()
 
+    image_decoded = decode_image(image)
+
     try:
         sql = "insert into user(name, phone, address, relationship, image) values (%s, %s, %s, %s, %s)"
-        curs.execute(sql, (name, phone, address, relationship, image))
+        curs.execute(sql, (name, phone, address, relationship, image_decoded))
         conn.commit()
         conn.close()
         return {'results' : 'OK'}
@@ -56,9 +65,11 @@ async def update(seq: int, name: str, phone: str, address: str, relationship: st
     conn = connection()
     curs = conn.cursor()
 
+    image_decoded = decode_image(image)
+
     try:
         sql = "update user set name = %s, phone = %s, address = %s, relationship = %s, image = %s where seq = %s"
-        curs.execute(sql, (name, phone, address, relationship, image, seq))
+        curs.execute(sql, (name, phone, address, relationship, image_decoded, seq))
         conn.commit()
         conn.close()
         return {'results' : 'OK'}
