@@ -1,8 +1,8 @@
 //
 //  TableViewController.swift
-//  mySQL_image_address_project
+//  swift_MySQL
 //
-//  Created by changbin an on 12/18/24.
+//  Created by BUMPIE on 12/18/24.
 //
 
 import UIKit

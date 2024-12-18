@@ -1,55 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7V3-9p-dD1">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--주소록-->
-        <scene sceneID="neJ-ao-hmZ">
-            <objects>
-                <viewController id="zvg-qd-ozn" customClass="TableViewController" customModule="swift_MySQL" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NKK-Bw-SKj">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="luV-Yl-j80">
-                                <rect key="frame" x="16" y="103" width="361" height="715"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iST-vh-TBh" customClass="TableViewCell" customModule="swift_MySQL" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iST-vh-TBh" id="JKb-jF-Zjo">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="P46-Ac-O2U" kind="show" identifier="sgUpdateDelete" trigger="accessoryAction" id="Ial-gX-tve"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="LRn-fv-dAK"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="주소록" id="6nA-hg-V48">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aNc-kb-QTQ">
-                            <connections>
-                                <segue destination="5YV-Qf-KvW" kind="show" identifier="sgInsert" id="6H4-Qe-B5Q"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NLp-M4-hKt" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="565.64885496183206" y="-1.4084507042253522"/>
-        </scene>
         <!--주소록 입력-->
         <scene sceneID="dvy-P4-bfT">
             <objects>
@@ -134,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70c-gP-0JW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606.8702290076335" y="-195.07042253521126"/>
+            <point key="canvasLocation" x="2533.5877862595421" y="-195.07042253521126"/>
         </scene>
         <!--주소록 수정 및 삭제-->
         <scene sceneID="L0e-Uk-rJL">
@@ -227,25 +185,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALu-qd-kYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1607" y="496"/>
+            <point key="canvasLocation" x="2533.5877862595421" y="495.77464788732397"/>
+        </scene>
+        <!--주소록-->
+        <scene sceneID="lZi-hZ-N33">
+            <objects>
+                <tableViewController id="IVt-Ya-Jbg" customClass="TableViewController" customModule="swift_MySQL" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fw2-Ix-BdD">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="Yn4-Oe-tX5" customClass="TableViewCell" customModule="swift_MySQL" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="98"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yn4-Oe-tX5" id="01j-nl-UqJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="98"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="P46-Ac-O2U" kind="show" id="VmF-pE-iR5"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IVt-Ya-Jbg" id="eEe-kJ-XBm"/>
+                            <outlet property="delegate" destination="IVt-Ya-Jbg" id="kjc-Se-hdh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="주소록" id="thR-d8-EyN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eyd-5Y-mNl">
+                            <connections>
+                                <segue destination="5YV-Qf-KvW" kind="show" id="bkN-e9-fhk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cvp-fp-MEn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1536.6412213740457" y="-1.4084507042253522"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="rXs-x0-bmg">
+        <scene sceneID="Ji6-Mx-iBn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WWj-FP-U9Q" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7V3-9p-dD1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gsa-JI-rAf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ogm-jG-F7g">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zvg-qd-ozn" kind="relationship" relationship="rootViewController" id="ZQX-gU-8fS"/>
+                        <segue destination="IVt-Ya-Jbg" kind="relationship" relationship="rootViewController" id="vPG-Ns-5Zs"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Goe-K0-cNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IJi-xc-d9l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-361.06870229007632" y="-1.4084507042253522"/>
+            <point key="canvasLocation" x="609.92366412213732" y="-1.4084507042253522"/>
         </scene>
     </scenes>
     <resources>
@@ -253,7 +249,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
