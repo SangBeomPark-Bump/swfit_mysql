@@ -196,6 +196,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="주소록 수정 및 삭제" id="LTy-Xe-W5u"/>
+                    <connections>
+                        <outlet property="tfAddress" destination="Rgn-n8-crI" id="j1Z-Qf-RzS"/>
+                        <outlet property="tfImage" destination="vKB-Wb-dzN" id="pVg-lc-4G2"/>
+                        <outlet property="tfName" destination="a6b-FO-mBx" id="ddj-BQ-WsK"/>
+                        <outlet property="tfPhone" destination="J6u-JH-okK" id="Hse-Ab-0Ea"/>
+                        <outlet property="tfRelation" destination="yML-aA-thu" id="eGK-wI-kx3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALu-qd-kYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +248,7 @@
                                     <outlet property="cellImageView" destination="rIj-eZ-u4l" id="QjC-bu-PI7"/>
                                     <outlet property="lblName" destination="4Pt-Jm-3EL" id="Hzo-Yw-Vn1"/>
                                     <outlet property="lblPhoneNum" destination="kxf-uo-uLK" id="mK5-Aj-asg"/>
-                                    <segue destination="P46-Ac-O2U" kind="show" id="VmF-pE-iR5"/>
+                                    <segue destination="P46-Ac-O2U" kind="show" identifier="sgUpdate" id="VmF-pE-iR5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -253,7 +260,7 @@
                     <navigationItem key="navigationItem" title="주소록" id="thR-d8-EyN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eyd-5Y-mNl">
                             <connections>
-                                <segue destination="5YV-Qf-KvW" kind="show" id="bkN-e9-fhk"/>
+                                <segue destination="5YV-Qf-KvW" kind="show" identifier="sgInsert" id="bkN-e9-fhk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

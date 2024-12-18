@@ -8,9 +8,25 @@
 import UIKit
 
 class UpdateDeleteViewController: UIViewController {
+    
+    var curAddress : Address?
 
+    @IBOutlet weak var tfName: UITextField!
+    @IBOutlet weak var tfPhone: UITextField!
+    @IBOutlet weak var tfAddress: UITextField!
+    @IBOutlet weak var tfRelation: UITextField!
+    
+    @IBOutlet weak var tfImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tfName.text =  curAddress!.name
+        tfPhone.text = curAddress!.phoneNumber
+        tfAddress.text = curAddress!.address
+        tfRelation.text = curAddress!.relation
+        
+        tfImage.image = curAddress!.photo
 
         // Do any additional setup after loading the view.
     }
