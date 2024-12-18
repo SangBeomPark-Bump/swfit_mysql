@@ -17,9 +17,6 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dataInit()
-        imageInit()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,6 +25,7 @@ class TableViewController: UITableViewController {
          self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
+    ///// 이부분 바꾸기
     func dataInit(){
         dataArray.append(
             Address(
@@ -46,7 +44,10 @@ class TableViewController: UITableViewController {
         }
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        dataInit()
+        imageInit()
+    }
     
     
     
