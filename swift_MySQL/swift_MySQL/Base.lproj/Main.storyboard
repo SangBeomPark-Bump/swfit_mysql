@@ -21,6 +21,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Photo 불러오기"/>
+                                <connections>
+                                    <action selector="btnImagePicker:" destination="5YV-Qf-KvW" eventType="touchUpInside" id="i23-dM-mpI"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aB4-J4-afG">
                                 <rect key="frame" x="16" y="407" width="361" height="307"/>
@@ -31,6 +34,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="등록"/>
+                                <connections>
+                                    <action selector="btnAdd:" destination="5YV-Qf-KvW" eventType="touchUpInside" id="ykf-eY-RHj"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ot2-i6-rE6">
                                 <rect key="frame" x="16" y="147" width="137" height="21"/>
@@ -89,6 +95,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="주소록 입력" id="piy-LB-O2h"/>
+                    <connections>
+                        <outlet property="btnImagePicker" destination="y1d-pF-z43" id="uqD-Ky-rcU"/>
+                        <outlet property="imgView" destination="aB4-J4-afG" id="Q9m-pP-EB0"/>
+                        <outlet property="tfAddress" destination="psb-9h-QUS" id="iEp-6a-Kb0"/>
+                        <outlet property="tfName" destination="QMB-bZ-213" id="0DY-Vg-YFo"/>
+                        <outlet property="tfPhone" destination="VIx-Ib-9Yd" id="GOe-ZF-5OY"/>
+                        <outlet property="tfRelation" destination="Gsg-G0-5iO" id="AvY-Ej-ZOx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70c-gP-0JW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,6 +164,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Photo 변경"/>
+                                <connections>
+                                    <action selector="btnChangeImage:" destination="P46-Ac-O2U" eventType="touchUpInside" id="M7P-O1-LWO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMa-zc-SSw">
                                 <rect key="frame" x="88" y="765" width="92" height="35"/>
@@ -182,6 +199,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="주소록 수정 및 삭제" id="LTy-Xe-W5u"/>
+                    <connections>
+                        <outlet property="tfAddress" destination="Rgn-n8-crI" id="j1Z-Qf-RzS"/>
+                        <outlet property="tfImage" destination="vKB-Wb-dzN" id="pVg-lc-4G2"/>
+                        <outlet property="tfName" destination="a6b-FO-mBx" id="ddj-BQ-WsK"/>
+                        <outlet property="tfPhone" destination="J6u-JH-okK" id="Hse-Ab-0Ea"/>
+                        <outlet property="tfRelation" destination="yML-aA-thu" id="eGK-wI-kx3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALu-qd-kYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,7 +251,7 @@
                                     <outlet property="cellImageView" destination="rIj-eZ-u4l" id="QjC-bu-PI7"/>
                                     <outlet property="lblName" destination="4Pt-Jm-3EL" id="Hzo-Yw-Vn1"/>
                                     <outlet property="lblPhoneNum" destination="kxf-uo-uLK" id="mK5-Aj-asg"/>
-                                    <segue destination="P46-Ac-O2U" kind="show" id="VmF-pE-iR5"/>
+                                    <segue destination="P46-Ac-O2U" kind="show" identifier="sgUpdate" id="VmF-pE-iR5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -239,7 +263,7 @@
                     <navigationItem key="navigationItem" title="주소록" id="thR-d8-EyN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eyd-5Y-mNl">
                             <connections>
-                                <segue destination="5YV-Qf-KvW" kind="show" id="bkN-e9-fhk"/>
+                                <segue destination="5YV-Qf-KvW" kind="show" identifier="sgInsert" id="bkN-e9-fhk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

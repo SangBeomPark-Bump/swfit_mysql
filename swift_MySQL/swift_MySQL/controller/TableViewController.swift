@@ -17,17 +17,15 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dataInit()
-        imageInit()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
+    ///// 이부분 바꾸기
     func dataInit(){
         dataArray.append(
             Address(
@@ -46,7 +44,10 @@ class TableViewController: UITableViewController {
         }
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        dataInit()
+        imageInit()
+    }
     
     
     
@@ -129,14 +130,15 @@ class TableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "sgDetail"{
-//            let cell = sender as! UITableViewCell
-//            let indexPath = tableViewAnimal.indexPath(for: cell)
-//            let detailView = segue.destination as! detailViewController
-//            detailView.selectedAnimal = dataArray[indexPath!.row]
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sgUpdate"{
+            let cell = sender as! UITableViewCell
+            let indexPath = tvAddress.indexPath(for: cell)
+            let updateDeleteView = segue.destination as! UpdateDeleteViewController
+            updateDeleteView.curAddress = dataArray[indexPath!.row]
+
+        }
+    }
 
 
 }
