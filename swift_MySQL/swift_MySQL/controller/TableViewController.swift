@@ -14,6 +14,8 @@ class TableViewController: UITableViewController {
     
     var dataArray : [Address] = []
     var imageArray : [UIImage] = []
+    
+//    var feedItem : [DBModelMain] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,12 @@ class TableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dataInit()
-        imageInit()
+        let queryModel = QueryModel()
+        queryModel.delegate = self
+        
+        Task{
+            await queryModel.downloadItems()
+        }
     }
     
     
@@ -115,6 +121,16 @@ class TableViewController: UITableViewController {
         dataArray.insert(itemToMove, at: to.row)
     }
     
+//    func loadImage(imageAddress: String)async -> UIImage?{
+//        let url = URL(string : imageAddress)
+//        do{
+//            let (data, _) = try await URLSession.shared.data(from: url!)
+//            return UIImage(data: data)
+//        }catch{
+//            print("Fail to read image : \(error.localizedDescription)")
+//            return nil
+//        }
+//    }
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -141,4 +157,11 @@ class TableViewController: UITableViewController {
     }
 
 
+}
+
+extension TableViewController : MainQueryModelProtocol {
+    func itemDownloaded(items: [Address]) {
+        dataArray = items
+        self.tvAddress.reloadData()
+    }
 }

@@ -22,16 +22,17 @@ def encode_image(image_data):
 async def select():
     conn = connection()
     curs = conn.cursor()
-    sql = "SELECT name, phone, image FROM user"
+    sql = "SELECT seq, name, phone, address, relationship FROM user"
     curs.execute(sql)
     rows = curs.fetchall()
     conn.close()
 
 
-    for row in rows:
-        if row['image']:
-            row['image'] = encode_image(row['image'])
-    print(rows)
+    # for row in rows:
+    #     if row['image']:
+    #         row['image'] = encode_image(row['image'])
+    # print(rows)
+    print("wow")
 
     return rows
 
