@@ -15,5 +15,5 @@ struct MainJson : Codable {
     var phone: String
     var address : String
     var relationship: String
-//    var image : Data
+    var image : String?
 }
