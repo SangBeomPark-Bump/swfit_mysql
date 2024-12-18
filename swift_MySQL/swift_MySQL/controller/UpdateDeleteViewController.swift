@@ -45,9 +45,9 @@ class UpdateDeleteViewController: UIViewController {
             name: tfName.text!,
             phone: tfPhone.text!,
             address: tfAddress.text!,
-            relationship: tfRelation.text!,
-            image: curAddress!.photo
+            relationship: tfRelation.text!
         )
+        uploadImage(seq: curAddress!.id!, image: curAddress!.photo)
     }
     /*
     // MARK: - Navigation
@@ -61,13 +61,11 @@ class UpdateDeleteViewController: UIViewController {
     
     
     
-    func updateUser(seq: Int, name: String, phone: String, address: String, relationship: String, image: UIImage) {
+    func updateUser(seq: Int, name: String, phone: String, address: String, relationship: String) {
         // 1. URL 설정
         guard let url = URL(string: "http://127.0.0.1:8000/user/user_update") else { return }
         
-        // 2. 이미지를 base64 문자열로 변환
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
-        let base64Image = imageData.base64EncodedString()
+
         
         // 3. 쿼리 파라미터 설정
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
@@ -77,7 +75,6 @@ class UpdateDeleteViewController: UIViewController {
             URLQueryItem(name: "phone", value: phone),
             URLQueryItem(name: "address", value: address),
             URLQueryItem(name: "relationship", value: relationship),
-            URLQueryItem(name: "image", value: base64Image)
         ]
         
         guard let finalURL = components?.url else { return }
@@ -98,7 +95,43 @@ class UpdateDeleteViewController: UIViewController {
         task.resume()
     }
 
-    
+    func uploadImage(seq: Int, image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            print("Failed to convert image to data")
+            return
+        }
+        
+        let url = URL(string: "http://localhost:8000/upload_image")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var body = Data()
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"seq\"\r\n\r\n".data(using: .utf8)!)
+        body.append("\(seq)\r\n".data(using: .utf8)!)
+        
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body
+        
+        // URLSession을 사용하여 요청 전송
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                print("Error uploading image: \(error.localizedDescription)")
+                return
+            }
+            
+            print("Image uploaded successfully")
+        }.resume()
+    }
+
     
     
     

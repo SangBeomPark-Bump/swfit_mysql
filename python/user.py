@@ -2,6 +2,11 @@ from fastapi import APIRouter
 import pymysql
 import base64
 
+from fastapi import FastAPI, File, UploadFile, Form
+from fastapi.responses import JSONResponse
+import shutil
+import os
+
 router = APIRouter()
 
 def connection():
@@ -18,12 +23,8 @@ def connection():
 def encode_image(image_data):
     return base64.b64encode(image_data).decode('utf-8')
 
-
-
 def decode_image(base64_string):
     return base64.b64decode(base64_string)
-
-
 
 @router.get("/user_select")
 async def select():
@@ -61,15 +62,15 @@ async def insert(name: str, phone: str, address: str, relationship: str, image: 
         return {'results' : 'Error'}
     
 @router.get("/user_update")
-async def update(seq: int, name: str, phone: str, address: str, relationship: str, image: str):
+async def update(seq: int, name: str, phone: str, address: str, relationship: str):
     conn = connection()
     curs = conn.cursor()
 
-    image_decoded = decode_image(image)
+    # image_decoded = decode_image(image)
 
     try:
-        sql = "update user set name = %s, phone = %s, address = %s, relationship = %s, image = %s where seq = %s"
-        curs.execute(sql, (name, phone, address, relationship, image_decoded, seq))
+        sql = "update user set name = %s, phone = %s, address = %s, relationship = %s, where seq = %s"
+        curs.execute(sql, (name, phone, address, relationship, seq))
         conn.commit()
         conn.close()
         return {'results' : 'OK'}
@@ -77,3 +78,31 @@ async def update(seq: int, name: str, phone: str, address: str, relationship: st
         conn.close()
         print("Error :", e)
         return {'results' : 'Error'}
+    
+
+@router.post("/upload_image")
+async def upload_image(seq: int = Form(...), image: UploadFile = File(...)):
+    try:
+        # # 이미지를 저장할 디렉토리 설정
+        # upload_dir = "uploads"
+        # if not os.path.exists(upload_dir):
+        #     os.makedirs(upload_dir)
+        
+        # # 이미지 파일 저장
+        # file_path = os.path.join(upload_dir, image.filename)
+        # with open(file_path, "wb") as buffer:
+        #     shutil.copyfileobj(image.file, buffer)
+
+        image_decoded = decode_image(image)
+        
+        # 데이터베이스에 seq와 이미지 경로 저장
+        conn = connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE user SET image = ? WHERE seq = ?", (image_decoded, seq))
+        conn.commit()
+        conn.close()
+
+        return JSONResponse(content={"message": "Image uploaded and data updated successfully", "filename": image.filename}, status_code=200)
+    
+    except Exception as e:
+        return JSONResponse(content={"message": f"Failed to upload image or update database: {str(e)}"}, status_code=500)

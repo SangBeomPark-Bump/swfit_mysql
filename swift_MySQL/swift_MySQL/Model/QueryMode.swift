@@ -37,11 +37,13 @@ class QueryModel{
             for address in addresses{
                 // 이미지 Base64 디코딩
                 if let imageString = address.image,
-                   let imageDataDecoded = Data(base64Encoded: imageString, options: .ignoreUnknownCharacters) {
-                    let query = Address(id : address.seq, name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(data: imageDataDecoded)!)
+                   let imageDataDecoded = Data(base64Encoded: imageString, options: .ignoreUnknownCharacters),
+                   let wow  = UIImage(data: imageDataDecoded)
+                {
+                    let query = Address(id : address.seq, name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: wow )
                     locations.append(query)
                 }else{
-                    let query = Address(name: "실패", phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
+                    let query = Address(name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
                     locations.append(query)}
             }
             
