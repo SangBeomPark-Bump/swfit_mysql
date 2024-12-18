@@ -64,3 +64,15 @@ extension UpdateDeleteViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true, completion: nil) // 취소 시 창 닫기
     }
 }
+
+
+extension UpdateDeleteViewController: MainUpdateModelProtocol {
+    func contactUpdated(success: Bool, message: String) {
+        DispatchQueue.main.async {
+            let title = success ? "Success" : "Error"
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
