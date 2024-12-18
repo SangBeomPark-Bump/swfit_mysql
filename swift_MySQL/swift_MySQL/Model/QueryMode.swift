@@ -43,7 +43,7 @@ class QueryModel{
                     let query = Address(id : address.seq, name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: wow )
                     locations.append(query)
                 }else{
-                    let query = Address(name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
+                    let query = Address(id : address.seq, name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
                     locations.append(query)}
             }
             
