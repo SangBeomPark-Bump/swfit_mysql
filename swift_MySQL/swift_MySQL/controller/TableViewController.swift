@@ -129,14 +129,15 @@ class TableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "sgDetail"{
-//            let cell = sender as! UITableViewCell
-//            let indexPath = tableViewAnimal.indexPath(for: cell)
-//            let detailView = segue.destination as! detailViewController
-//            detailView.selectedAnimal = dataArray[indexPath!.row]
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sgUpdate"{
+            let cell = sender as! UITableViewCell
+            let indexPath = tvAddress.indexPath(for: cell)
+            let updateDeleteView = segue.destination as! UpdateDeleteViewController
+            updateDeleteView.curAddress = dataArray[indexPath!.row]
+
+        }
+    }
 
 
 }
