@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct MainJson : Codable {
+    //// json의 변수 이름과 key 값을 똑같이 해줘야함
+    var name : String
+    var phone : String
+}
