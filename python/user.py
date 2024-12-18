@@ -47,7 +47,7 @@ class User:
             for row in rows:
                 image = Image.open(io.BytesIO(row['image']))
                 addresses.append({
-                    'id': row['id'],
+                    'seq': row['seq'],
                     'name': row['name'],
                     'phoneNumber': row['phone_number'],
                     'address': row['address'],
@@ -59,24 +59,24 @@ class User:
             print(f"Error: {e}")
             return []
 
-    def update_address(self, id, name, phone_number, address, relation, image):
+    def update_address(self, seq, name, phone_number, address, relation, image):
         try:
             sql = """UPDATE addresses SET name = %s, phone_number = %s, address = %s,
-                     relation = %s, image = %s WHERE id = %s"""
+                     relation = %s, image = %s WHERE seq = %s"""
             img_byte_arr = io.BytesIO()
             image.save(img_byte_arr, format='PNG')
             img_byte_arr = img_byte_arr.getvalue()
-            values = (name, phone_number, address, relation, img_byte_arr, id)
+            values = (name, phone_number, address, relation, img_byte_arr, seq)
             self.cursor.execute(sql, values)
             self.connection.commit()
             print("주소가 성공적으로 업데이트되었습니다.")
         except pymysql.Error as e:
             print(f"Error: {e}")
 
-    def delete_address(self, id):
+    def delete_address(self, seq):
         try:
-            sql = "DELETE FROM addresses WHERE id = %s"
-            self.cursor.execute(sql, (id,))
+            sql = "DELETE FROM addresses WHERE seq = %s"
+            self.cursor.execute(sql, (seq,))
             self.connection.commit()
             print("주소가 성공적으로 삭제되었습니다.")
         except pymysql.Error as e:
