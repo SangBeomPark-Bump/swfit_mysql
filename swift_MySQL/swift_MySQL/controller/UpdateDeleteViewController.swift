@@ -36,31 +36,26 @@ class UpdateDeleteViewController: UIViewController {
     }
     
     @IBAction func btnUpdate(_ sender: UIButton) {
-    guard let id = curAddress?.id,
-          let name = tfName.text, !name.isEmpty,
-          let phone = tfPhone.text, !phone.isEmpty,
-          let address = tfAddress.text, !address.isEmpty,
-          let relation = tfRelation.text, !relation.isEmpty else {
-        showAlert(message: "모든 텍스트 필드를 입력해주세요.")
-        return
-    }
-    
-    let imageToUpdate = tfImage.image ?? UIImage() // 기본 이미지 사용
-    updateUser(seq: id, name: name, phone: phone, address: address, relationship: relation, image: imageToUpdate)
-}
-
+        guard let id = curAddress?.id,
+              let name = tfName.text, !name.isEmpty,
+              let phone = tfPhone.text, !phone.isEmpty,
+              let address = tfAddress.text, !address.isEmpty,
+              let relationship = tfRelation.text, !relationship.isEmpty else {
+            showAlert(message: "모든 필드를 입력해주세요.")
+            return
+        }
         
-        let imageToUpdate = selectedImage ?? curAddress?.photo
-        updateUser(seq: id, name: name, phone: phone, address: address, relationship: relation, image: imageToUpdate)
+        let imageToUpdate = selectedImage ?? tfImage.image ?? UIImage()
+        updateUser(seq: id, name: name, phone: phone, address: address, relationship: relationship, image: imageToUpdate)
     }
     
-    func updateUser(seq: Int, name: String, phone: String, address: String, relationship: String, image: UIImage?) {
+    func updateUser(seq: Int, name: String, phone: String, address: String, relationship: String, image: UIImage) {
         guard let url = URL(string: "http://127.0.0.1:8000/user/user_update") else {
             showAlert(message: "Invalid URL")
             return
         }
         
-        guard let imageData = image?.jpegData(compressionQuality: 0.8) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             showAlert(message: "이미지 변환 실패")
             return
         }
@@ -117,10 +112,10 @@ extension UpdateDeleteViewController: UIImagePickerControllerDelegate, UINavigat
             tfImage.image = pickedImage
             selectedImage = pickedImage
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 }
