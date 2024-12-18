@@ -1,9 +1,10 @@
 import UIKit
 
-class UpdateDeleteViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UpdateDeleteViewController: UIViewController {
     
     let imagePicker = UIImagePickerController()
     var curAddress: Address?
+    var selectedImage: UIImage?
 
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfPhone: UITextField!
@@ -13,7 +14,6 @@ class UpdateDeleteViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         setupImagePicker()
     }
@@ -40,22 +40,22 @@ class UpdateDeleteViewController: UIViewController, UIImagePickerControllerDeleg
               let name = tfName.text, !name.isEmpty,
               let phone = tfPhone.text, !phone.isEmpty,
               let address = tfAddress.text, !address.isEmpty,
-              let relation = tfRelation.text, !relation.isEmpty,
-              let image = tfImage.image else {
+              let relation = tfRelation.text, !relation.isEmpty else {
             showAlert(message: "모든 필드를 입력해주세요.")
             return
         }
         
-        updateUser(seq: id, name: name, phone: phone, address: address, relationship: relation, image: image)
+        let imageToUpdate = selectedImage ?? curAddress?.photo
+        updateUser(seq: id, name: name, phone: phone, address: address, relationship: relation, image: imageToUpdate)
     }
     
-    func updateUser(seq: Int, name: String, phone: String, address: String, relationship: String, image: UIImage) {
+    func updateUser(seq: Int, name: String, phone: String, address: String, relationship: String, image: UIImage?) {
         guard let url = URL(string: "http://127.0.0.1:8000/user/user_update") else {
             showAlert(message: "Invalid URL")
             return
         }
         
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+        guard let imageData = image?.jpegData(compressionQuality: 0.8) else {
             showAlert(message: "이미지 변환 실패")
             return
         }
@@ -80,7 +80,7 @@ class UpdateDeleteViewController: UIViewController, UIImagePickerControllerDeleg
         var request = URLRequest(url: finalURL)
         request.httpMethod = "GET"
         
-        let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { [weak self] _, response, error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.showAlert(message: "Error: \(error.localizedDescription)")
@@ -104,16 +104,18 @@ class UpdateDeleteViewController: UIViewController, UIImagePickerControllerDeleg
         })
         present(alert, animated: true)
     }
-    
+}
+
+extension UpdateDeleteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             tfImage.image = pickedImage
-            curAddress?.photo = pickedImage
+            selectedImage = pickedImage
         }
-        dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }
