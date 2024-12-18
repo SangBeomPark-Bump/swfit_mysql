@@ -35,23 +35,17 @@ class QueryModel{
         do{
             let addresses = try decoder.decode([MainJson].self, from : data)
             for address in addresses{
-                let query = Address(name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
-                locations.append(query)
+                // 이미지 Base64 디코딩
+                if let imageString = address.image,
+                   let imageDataDecoded = Data(base64Encoded: imageString, options: .ignoreUnknownCharacters) {
+                    let query = Address(name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(data: imageDataDecoded)!)
+                    locations.append(query)
+                }else{
+                    let query = Address(name: "실패", phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
+                    locations.append(query)}
             }
             
         } catch{
-            do{
-//                print(data)
-                try decoder.decode([MainJson].self, from : data)
-//                print(addresses)
-//                for address in addresses{
-//                    let query = Address(name: address.name, phoneNumber: address.phone, address: address.address, relation: address.relationship, photo: UIImage(named: "lamp_on")!)
-//                    locations.append(query)
-//                }
-                
-            } catch{
-                print("Failed : \(error.localizedDescription)")
-            }
             print("Failed : \(error.localizedDescription)")
         }
         self.delegate.itemDownloaded(items: locations)
